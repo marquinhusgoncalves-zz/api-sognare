@@ -1,0 +1,29 @@
+{
+  "name": "api-sognare",
+  "version": "1.0.0",
+  "description": "API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marquinhusgoncalves/api-sognare.git"
+  },
+  "author": "Marcus Gonçalves",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marquinhusgoncalves/api-sognare/issues"
+  },
+  "homepage": "https://github.com/marquinhusgoncalves/api-sognare#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "body-parser": "~1.0.1",
+    "express": "~4.0.0"
+  }
+}
