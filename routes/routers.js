@@ -1,7 +1,10 @@
 const express = require('express');
 const request = require('request');
+const fetch = require('node-fetch');
 const router = express.Router();
 const bodyParser = require('body-parser');
+
+import { searchModel, itemModel } from './filterData'
 
 router.use(bodyParser.urlencoded({ extended: true }));
 
@@ -10,20 +13,25 @@ const env = require('../env.json')
 
 router.get('/', (req, res) => {
   request(`${env.hostname}${env.endpoints.search}?q=${req.query.search}`, (error, response, body) => {
-    res.send(JSON.parse(body))
+    const data = JSON.parse(body)
+    res.json([data].map(searchModel));
   });
 });
 
-router.get('/:id', (req, res) => {
-  request(`${env.hostname}${env.endpoints.product}/${req.params.id}`, (error, response, body) => {
-    res.send(JSON.parse(body))
-  });
-});
+router.get('/:id', async (req, res) => {
+  const response = await fetch(`${env.hostname}${env.endpoints.product}/${req.params.id}`)
+  const data = await response.json();
 
-router.get('/:id/description', (req, res) => {
-  request(`${env.hostname}${env.endpoints.product}/${req.params.id}${env.endpoints.product}`, (error, response, body) => {
-    res.send(JSON.parse(body))
-  });
-});
+  const responseDescription = await fetch(`${env.hostname}${env.endpoints.product}/${req.params.id}${env.endpoints.description}`)
+  const dataDescription = await responseDescription.json();
+  console.log('dataDescrp', dataDescription)
+  const itemData = [data].map(itemModel)
+
+  if (itemData[0]) {
+    itemData[0].item.description = dataDescription ? dataDescription.plain_text : ''
+  }
+
+  res.json(itemData);
+})
 
 module.exports = router;
