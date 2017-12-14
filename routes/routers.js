@@ -6,26 +6,22 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 
 // ROUTES
+const env = require('../env.json')
+
 router.get('/', (req, res) => {
-  const url = 'https://api.mercadolibre.com/sites/MLA/search?q='
-  const search = req.query.search;
-  request(url + search, (error, response, body) => {
+  request(`${env.hostname}${env.endpoints.search}?q=${req.query.search}`, (error, response, body) => {
     res.send(JSON.parse(body))
   });
 });
 
 router.get('/:id', (req, res) => {
-  const url = 'https://api.mercadolibre.com/items/'
-  const id = req.params.id;
-  request(url + id, (error, response, body) => {
+  request(`${env.hostname}${env.endpoints.product}/${req.params.id}`, (error, response, body) => {
     res.send(JSON.parse(body))
   });
 });
 
 router.get('/:id/description', (req, res) => {
-  const url = 'https://api.mercadolibre.com/items/'
-  const id = req.params.id;
-  request(url + id + '/description', (error, response, body) => {
+  request(`${env.hostname}${env.endpoints.product}/${req.params.id}${env.endpoints.product}`, (error, response, body) => {
     res.send(JSON.parse(body))
   });
 });
