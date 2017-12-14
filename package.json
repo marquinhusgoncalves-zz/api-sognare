@@ -4,9 +4,8 @@
   "description": "API",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon index.js"
   },
-
   "engines": {
     "node": ">=6",
     "npm": ">=3"
@@ -23,7 +22,9 @@
   "homepage": "https://github.com/marquinhusgoncalves/api-sognare#readme",
   "devDependencies": {},
   "dependencies": {
-    "body-parser": "~1.0.1",
-    "express": "~4.0.0"
+    "body-parser": "^1.0.2",
+    "express": "^4.16.2",
+    "nodemon": "^1.12.7",
+    "request": "^2.83.0"
   }
 }
