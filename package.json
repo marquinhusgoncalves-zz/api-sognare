@@ -4,7 +4,8 @@
   "description": "API",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "lint": "eslint */*.js"
   },
   "engines": {
     "node": ">=6",
@@ -20,7 +21,15 @@
     "url": "https://github.com/marquinhusgoncalves/api-sognare/issues"
   },
   "homepage": "https://github.com/marquinhusgoncalves/api-sognare#readme",
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "nodemon": "^1.12.7"
+  },
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.3",
@@ -31,7 +40,6 @@
     "body-parser": "^1.0.2",
     "express": "^4.16.2",
     "node-fetch": "^1.7.3",
-    "nodemon": "^1.12.7",
     "request": "^2.83.0"
   }
 }
