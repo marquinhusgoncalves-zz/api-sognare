@@ -29,10 +29,10 @@ router.get('/:id', async (req, res) => {
 
   const responseDescription = await fetch(`${env.hostname}${env.endpoints.product}/${req.params.id}${env.endpoints.description}`);
   const dataDescription = await responseDescription.json();
-  const itemData = [data].map(itemModel);
+  const itemData = itemModel(data);
 
-  if (itemData[0]) {
-    itemData[0].item.description = dataDescription ? dataDescription.plain_text : '';
+  if (itemData) {
+    itemData.item.description = dataDescription ? dataDescription.plain_text : '';
   }
 
   res.json(itemData);
