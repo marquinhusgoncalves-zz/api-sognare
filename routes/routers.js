@@ -19,7 +19,7 @@ const env = require('../env.json');
 router.get('/', (req, res) => {
   request(`${env.hostname}${env.endpoints.search}?q=${req.query.search}`, (error, response, body) => {
     const data = JSON.parse(body);
-    res.json([data].map(searchModel));
+    res.json(searchModel(data));
   });
 });
 
