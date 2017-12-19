@@ -51,7 +51,7 @@ const itemModel = data => ({
       amount: Math.trunc(data.price),
       decimals: data.price.toFixed(2).replace('.', '').replace(Math.trunc(data.price), ''),
     },
-    picture: data.thumbnail,
+    picture: data.pictures[0].url || data.thumbnail,
     condition: data.condition,
     free_shipping: data.shipping.free_shipping,
     sold_quantity: data.sold_quantity,
